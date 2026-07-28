@@ -129,5 +129,5 @@ def arcsin_scratch(x: float) -> float:
 def arccos_scratch(x: float) -> float:
     """Compute arccos(x) in radians, fully from scratch."""
     if x < -1 or x > 1:
-        raise DomainError(f"x must be in [-1, 1], got {x}")
+        raise DomainError(x)
     return (PI / 2) - arcsin_scratch(x)
