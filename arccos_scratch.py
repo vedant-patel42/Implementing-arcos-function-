@@ -18,6 +18,17 @@ TOLERANCE = 1e-12
 MAX_ITERATIONS = 1000
 
 
+class DomainError(Exception):
+    """Raised when x is outside the valid domain [-1, 1] for arccos(x)."""
+ 
+    def __init__(self, x: float):
+        self.x = x
+        message = (
+            f"x must be in [-1, 1], got {x}. "
+            f"Please enter a value within the valid domain."
+        )
+        super().__init__(message)
+
 # ----------------------------------------------------------------------
 # Subordinate function 1: square root, via Newton's method
 # ----------------------------------------------------------------------
