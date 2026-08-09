@@ -26,9 +26,10 @@ Version history:
           now correctly handled).
   1.1.1 - PEP-8 compliance fixes (Flake8 clean).
   1.1.2 - Pylint findings addressed (10.00/10).
+  1.1.3 - Display version number in GUI window title.
 """
 
-__version__ = "1.1.2"
+__version__ = "1.1.3"
 
 TOLERANCE = 1e-12
 MAX_ITERATIONS = 1000
