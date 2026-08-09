@@ -134,6 +134,8 @@ def arcsin_scratch(x: float) -> float:
 
 def arccos_scratch(x: float) -> float:
     """Compute arccos(x) in radians, fully from scratch."""
-    if x != x or x < -1 or x > 1:
+    if x != x or x < -1 or x > 1:  # pylint: disable=comparison-with-itself
+        # x != x is a from-scratch, dependency-free way to detect NaN,
+        # since NaN is the only float value that is never equal to itself.
         raise DomainError(x)
     return (PI / 2) - arcsin_scratch(x)

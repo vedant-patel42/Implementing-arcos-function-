@@ -16,7 +16,8 @@ from tkinter import ttk
 from arccos_scratch import arccos_scratch, DomainError
 
 
-class ArccosApp:
+class ArccosApp:  # pylint: disable=too-few-public-methods
+    """Tkinter GUI for the arccos(x) calculator."""
 
     def __init__(self, root: tk.Tk):
         self.root = root
@@ -114,6 +115,7 @@ class ArccosApp:
 
 
 def main():
+    """Launch the arccos(x) calculator GUI."""
     root = tk.Tk()
     root.lift()
     root.attributes('-topmost', True)
