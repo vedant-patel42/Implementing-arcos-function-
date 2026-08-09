@@ -12,7 +12,23 @@ Subordinate functions implemented from scratch:
   - arcsin_taylor : Taylor series for arcsin (same technique as D1),
                     used to compute arccos via the identity
                     arccos(x) = PI/2 - arcsin(x)
+
+Versioning follows Semantic Versioning (https://semver.org):
+  MAJOR.MINOR.PATCH -- MAJOR for incompatible/breaking changes,
+  MINOR for backward-compatible new functionality, PATCH for
+  backward-compatible bug fixes.
+
+Version history:
+  1.0.0 - Initial from-scratch implementation (pi, sqrt, sign,
+          arccos_scratch) with custom DomainError exception.
+  1.0.1 - Fixed DomainError message duplication bug.
+  1.1.0 - Added NaN detection to domain validation (new input class
+          now correctly handled).
+  1.1.1 - PEP-8 compliance fixes (Flake8 clean).
+  1.1.2 - Pylint findings addressed (10.00/10).
 """
+
+__version__ = "1.1.2"
 
 TOLERANCE = 1e-12
 MAX_ITERATIONS = 1000

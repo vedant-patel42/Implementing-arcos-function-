@@ -8,12 +8,15 @@ Tkinter graphical user interface wrapping the from-scratch arccos
 implementation in arccos_scratch.py. No built-in/library math functions
 are used for the computation itself; Tkinter is used only for the UI,
 which is explicitly permitted by the D2 "from scratch" constraint.
+
+Versioning follows Semantic Versioning; see arccos_scratch.__version__
+for the current version and version history.
 """
 
 import tkinter as tk
 from tkinter import ttk
 
-from arccos_scratch import arccos_scratch, DomainError
+from arccos_scratch import arccos_scratch, DomainError, __version__
 
 
 class ArccosApp:  # pylint: disable=too-few-public-methods
