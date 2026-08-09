@@ -118,7 +118,7 @@ def main():
     root.lift()
     root.attributes('-topmost', True)
     root.after_idle(root.attributes, '-topmost', False)
-    app = ArccosApp(root)
+    ArccosApp(root)
     root.mainloop()
 
 

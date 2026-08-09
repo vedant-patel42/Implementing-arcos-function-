@@ -17,9 +17,10 @@ Subordinate functions implemented from scratch:
 TOLERANCE = 1e-12
 MAX_ITERATIONS = 1000
 
+
 class DomainError(Exception):
     """Raised when x is outside the valid domain [-1, 1] for arccos(x)."""
- 
+
     def __init__(self, x: float):
         self.x = x
         message = (
@@ -27,6 +28,7 @@ class DomainError(Exception):
             f"Please enter a value within the valid domain."
         )
         super().__init__(message)
+
 
 # ----------------------------------------------------------------------
 # Subordinate function 1: square root, via Newton's method
@@ -50,6 +52,7 @@ def my_sqrt(x: float) -> float:
         guess = next_guess
     return guess
 
+
 # ----------------------------------------------------------------------
 # Subordinate function 2: sign, hand-rolled
 # ----------------------------------------------------------------------
@@ -57,6 +60,7 @@ def my_sign(x: float) -> float:
     """Return 1.0 if x >= 0, else -1.0 (hand-rolled replacement for
     math.copysign's sign-extraction behavior as used in D1)."""
     return 1.0 if x >= 0 else -1.0
+
 
 # ----------------------------------------------------------------------
 # Subordinate function 3: arctan, via Taylor series
@@ -79,6 +83,7 @@ def _arctan_series(x: float) -> float:
 
     return total
 
+
 # ----------------------------------------------------------------------
 # Subordinate function 4: PI, via Machin's formula
 # ----------------------------------------------------------------------
@@ -91,6 +96,7 @@ def _compute_pi() -> float:
 
 
 PI = _compute_pi()
+
 
 # ----------------------------------------------------------------------
 # arcsin via Taylor series (same technique as D1), now built entirely
@@ -128,6 +134,6 @@ def arcsin_scratch(x: float) -> float:
 
 def arccos_scratch(x: float) -> float:
     """Compute arccos(x) in radians, fully from scratch."""
-    if x!= x or x < -1 or x > 1:
+    if x != x or x < -1 or x > 1:
         raise DomainError(x)
     return (PI / 2) - arcsin_scratch(x)
