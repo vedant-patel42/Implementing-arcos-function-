@@ -24,7 +24,7 @@ class ArccosApp:  # pylint: disable=too-few-public-methods
 
     def __init__(self, root: tk.Tk):
         self.root = root
-        self.root.title("arccos(x) Calculator — F1, Deliverable 2")
+        self.root.title(f"arccos(x) Calculator — F1, v{__version__}")
         self.root.geometry("420x260")
         self.root.resizable(False, False)
 
