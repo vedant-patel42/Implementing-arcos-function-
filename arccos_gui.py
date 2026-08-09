@@ -11,6 +11,17 @@ which is explicitly permitted by the D2 "from scratch" constraint.
 
 Versioning follows Semantic Versioning; see arccos_scratch.__version__
 for the current version and version history.
+
+User Interface Design Principles (UIDP) applied, per D3 mind map:
+  - Visibility of System Status  (see _show_result / _show_error)
+  - Consistency and Standards    (see _build_widgets: ttk throughout)
+  - Error Prevention             (see domain_label)
+  - Feedback                     (see _show_result / _show_error)
+  - Recognition Rather Than Recall (see domain_label)
+  - Aesthetic and Minimalist Design (see _build_widgets: 5 widgets total)
+Flexibility/Efficiency of Use and User Control/Freedom were considered
+and judged only minimally applicable given this tool's intentionally
+simple, single-purpose, stateless design (see D3 mind map).
 """
 
 import tkinter as tk
