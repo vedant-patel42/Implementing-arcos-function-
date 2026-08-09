@@ -18,7 +18,7 @@ User Interface Design Principles (UIDP) applied, per D3 mind map:
   - Error Prevention             (see domain_label)
   - Feedback                     (see _show_result / _show_error)
   - Recognition Rather Than Recall (see domain_label)
-  - Aesthetic and Minimalist Design (see _build_widgets: 5 widgets total)
+  - Aesthetic and Minimalist Design (see _build_widgets: 8 widgets total)
 Flexibility/Efficiency of Use and User Control/Freedom were considered
 and judged only minimally applicable given this tool's intentionally
 simple, single-purpose, stateless design (see D3 mind map).
@@ -59,9 +59,9 @@ class ArccosApp:  # pylint: disable=too-few-public-methods
         self._build_widgets()
 
     def _build_widgets(self):
-        # UIDP - Aesthetic and Minimalist Design: exactly 5 interactive
-        # widgets (entry, 2 buttons) plus 3 informational labels; no
-        # extraneous menus, tabs, or settings.
+        # UIDP - Aesthetic and Minimalist Design: 8 widgets total (3
+        # interactive: entry + 2 buttons; 4 informational labels; 1
+        # layout frame) -- no menus, tabs, settings, or scrollbars.
         # UIDP - Consistency and Standards: every widget below uses the
         # ttk (themed Tk) widget set, giving native OS look-and-feel
         # and consistent styling across all buttons/labels/entries.
