@@ -1,7 +1,7 @@
 """
 arccos_gui.py
 
-Deliverable 2 - Problem 5
+Deliverable 2 - Problem 5 / Deliverable 3 - Problem 7
 SOEN 6011 - F1: arccos(x)
 
 Tkinter graphical user interface wrapping the from-scratch arccos
@@ -22,6 +22,17 @@ User Interface Design Principles (UIDP) applied, per D3 mind map:
 Flexibility/Efficiency of Use and User Control/Freedom were considered
 and judged only minimally applicable given this tool's intentionally
 simple, single-purpose, stateless design (see D3 mind map).
+
+Accessibility (D3, Problem 7):
+  - Keyboard operable: Entry accepts Return to trigger Calculate; all
+    interactive widgets (entry, both buttons) are reachable via Tab in
+    natural creation order (standard ttk focus traversal).
+  - Color is never the sole signal: success/error state in the result
+    label is conveyed by a checkmark/cross symbol in addition to color
+    (WCAG 1.4.1: Use of Color), so colorblind users can distinguish
+    outcomes without relying on hue.
+  - Text sizing (10-16px) and dark-on-light contrast were chosen for
+    legibility rather than purely aesthetic reasons.
 """
 
 import tkinter as tk
@@ -31,7 +42,13 @@ from arccos_scratch import arccos_scratch, DomainError, __version__
 
 
 class ArccosApp:  # pylint: disable=too-few-public-methods
-    """Tkinter GUI for the arccos(x) calculator."""
+    """Tkinter application wrapping arccos_scratch for interactive use.
+
+    Structured as a class (rather than free functions) to group the
+    widgets and their event handlers together; most of its methods are
+    intentionally private (prefixed with _) since they are internal
+    event callbacks, not a public API meant to be reused elsewhere.
+    """
 
     def __init__(self, root: tk.Tk):
         self.root = root
@@ -42,6 +59,12 @@ class ArccosApp:  # pylint: disable=too-few-public-methods
         self._build_widgets()
 
     def _build_widgets(self):
+        # UIDP - Aesthetic and Minimalist Design: exactly 5 interactive
+        # widgets (entry, 2 buttons) plus 3 informational labels; no
+        # extraneous menus, tabs, or settings.
+        # UIDP - Consistency and Standards: every widget below uses the
+        # ttk (themed Tk) widget set, giving native OS look-and-feel
+        # and consistent styling across all buttons/labels/entries.
         padding = {"padx": 12, "pady": 6}
 
         title_label = ttk.Label(
@@ -51,6 +74,9 @@ class ArccosApp:  # pylint: disable=too-few-public-methods
         )
         title_label.pack(pady=(16, 4))
 
+        # UIDP - Error Prevention / Recognition Rather Than Recall: the
+        # valid domain is shown before the user types anything, so they
+        # never have to guess or remember the constraint.
         domain_label = ttk.Label(
             self.root,
             text="Enter a value of x in the range [-1, 1]",
@@ -120,12 +146,26 @@ class ArccosApp:  # pylint: disable=too-few-public-methods
         self.x_entry.focus()
 
     def _show_result(self, text: str):
+        # UIDP - Visibility of System Status / Feedback: every Calculate
+        # click produces an immediate, visible response.
+        # Accessibility: success is signaled by both color (green) AND
+        # a leading checkmark symbol, not color alone, so the outcome
+        # is distinguishable for colorblind users (WCAG 1.4.1: Use of
+        # Color).
         self.result_label.configure(foreground="#1a7f37")  # green
-        self.result_var.set(text)
+        self.result_var.set(f"\u2713 {text}")
 
     def _show_error(self, text: str):
+        # UIDP - Visibility of System Status / Feedback: errors are
+        # shown in the same location as results, so failure is
+        # immediately and unambiguously visible in-window (never a
+        # silent failure or a console-only message).
+        # Accessibility: failure is signaled by both color (red) AND a
+        # leading cross symbol, not color alone, so the outcome is
+        # distinguishable for colorblind users (WCAG 1.4.1: Use of
+        # Color).
         self.result_label.configure(foreground="#c92a2a")  # red
-        self.result_var.set(f"Error: {text}")
+        self.result_var.set(f"\u2717 Error: {text}")
 
 
 def main():
